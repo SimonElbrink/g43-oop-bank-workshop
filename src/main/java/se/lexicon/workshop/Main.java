@@ -1,6 +1,7 @@
 package se.lexicon.workshop;
 
 
+import se.lexicon.workshop.dao.BankAccountDAO;
 import se.lexicon.workshop.dao.CustomerDAO;
 import se.lexicon.workshop.model.BankAccount;
 import se.lexicon.workshop.model.Customer;
@@ -32,25 +33,29 @@ public class Main {
 
         //---------
 
+//       Customer c1 = customerDAO.findByCustomerId(9001);
+//
+//        BankAccount b1 = new BankAccount(50_000,c1);
+//
+//        System.out.println("b1 Account= " + b1);
+//
+//        b1.withdraw(50000);
+//
+//        System.out.println(b1.getBalance()); //100_000
+
+
         Customer c1 = customerDAO.findByCustomerId(9001);
 
-        BankAccount b1 = new BankAccount(50_000,c1);
+        BankAccountDAO bankAccountDAO = new BankAccountDAO();
+        bankAccountDAO.add(50_000, c1);
 
-        System.out.println("b1 Account= " + b1);
+        BankAccount b1 = bankAccountDAO.findBankAccountById(61);
 
-        b1.withdraw(50000);
+        System.out.println(b1);
 
-        System.out.println(b1.getBalance()); //100_000
+        b1.deposit(5000);
 
-
-
-
-
-
-
-
-
-
+        System.out.println(b1.getBalance());
 
 
     }
